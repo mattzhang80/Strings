@@ -38,14 +38,14 @@ char *Str_concat(char pcDest[], const char pcSrc[])
 /*Compare two strings. */
 int Str_compare(const char pcStr1[], const char pcStr2[])
 {
-   size_t u;
+   size_t u = 0;
    assert(pcStr1 != NULL && pcStr2 != NULL);
    while (pcStr1[u] == pcStr2[u]) {
         if (pcStr1[u] == '\0') 
             return 0; 
         u++;
     }
-    return pcStr1[u] - pcStr2[u];
+    return (int) pcStr1[u] - pcStr2[u];
 }
 
 /*Search for a substring in a string. */
@@ -53,6 +53,7 @@ const char *Str_search(const char pcHaystack[], const char pcNeedle[])
 {
    size_t u, u2;
    assert(pcHaystack != NULL && pcNeedle != NULL);
+
    for (u = 0; pcHaystack[u] != '\0'; u++) {
       for (u2 = 0; pcNeedle[u2] != '\0'; u2++) {
          if (pcHaystack[u + u2] != pcNeedle[u2])

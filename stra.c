@@ -47,14 +47,17 @@ int Str_compare(const char pcStr1[], const char pcStr2[])
 }
 
 /*Search for a substring in a string. */
-const char *Str_search(const char pcHaystack[], const char pcNeedle[])
+const char *Str_search(const char pcHaystack[], const char pcNeedle[]) 
 {
    assert(pcHaystack != NULL && pcNeedle != NULL);
    size_t u;
-   size_t uLength = Str_getLength(pcNeedle);
-   for (u = 0; pcHaystack[u] != '\0'; u++)
-   {
-      if (Str_compare(pcHaystack + u, pcNeedle) == 0)
+   size_t u2;
+   for (u = 0; pcHaystack[u] != '\0'; u++) {
+      for (u2 = 0; pcNeedle[u2] != '\0'; u2++) {
+         if (pcHaystack[u + u2] != pcNeedle[u2])
+            break;
+      }
+      if (pcNeedle[u2] == '\0')
          return pcHaystack + u;
    }
    return NULL;

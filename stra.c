@@ -14,22 +14,23 @@ size_t Str_getLength(const char pcSrc[])
 /*Create a new string that is a copy of an existing string. */
 char *Str_copy(char pcDest[], const char pcSrc[])
 {
-   size_t u;
+   size_t u = 0;
    assert(pcSrc != NULL && pcDest != NULL);
-   for (u = 0; pcSrc[u] != '\0'; u++)
-      pcDest[u] = pcSrc[u];
-   pcDest[u] = '\0';
+   while ((pcDest[u] = pcSrc[u]) != '\0') {
+        u++;
+    }
    return pcDest;
 }
 
 /*Concatenate two strings together. */
 char *Str_concat(char pcDest[], const char pcSrc[])
 {
-    size_t destLength = Str_getLength(pcDest);
-    size_t u;
+    size_t u = 0, destLength = Str_getLength(pcDest);
     assert(pcSrc != NULL && pcDest != NULL);
-    for (u = 0; pcSrc[u] != '\0'; u++)
-      pcDest[destLength + u] = pcSrc[u];
+    while (pcSrc[u] != '\0') {
+        pcDest[destLength + u] = pcSrc[u];
+        u++;
+    }
     pcDest[destLength + u] = '\0';
     return pcDest;
 }

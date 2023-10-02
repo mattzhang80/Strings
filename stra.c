@@ -53,7 +53,8 @@ const char *Str_search(const char pcHaystack[], const char pcNeedle[])
 {
    size_t u, u2;
    assert(pcHaystack != NULL && pcNeedle != NULL);
-
+    if(pcNeedle[0] == '\0')
+        return pcHaystack;
    for (u = 0; pcHaystack[u] != '\0'; u++) {
       for (u2 = 0; pcNeedle[u2] != '\0'; u2++) {
          if (pcHaystack[u + u2] != pcNeedle[u2])

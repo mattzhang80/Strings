@@ -1,9 +1,9 @@
+/*String Module that uses pointers as much as possible*/
 #include "str.h"
 #include <stddef.h>
 #include <assert.h>
 
-/*String Module that uses pointers as much as possible*/
-
+/* Get the length of a string. */
 size_t Str_getLength(const char *pcSrc) {
     const char *pcEnd;
     pcEnd = pcSrc;
@@ -44,7 +44,7 @@ int Str_compare(const char *pcStr1, const char *pcStr2) {
         pcStr1++;
         pcStr2++;
     }
-    return (int) *pcStr1 - *pcStr2;
+    return (int) (*pcStr1 - *pcStr2);
 }
 
 /* Search for a substring in a string. */

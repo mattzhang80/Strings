@@ -57,13 +57,13 @@ const char *Str_search(const char *pcHaystack, const char *pcNeedle) {
     }
     while(*haystack != '\0') {
         if(*haystack == *needle) {
-            const char *h = haystack;
-            const char *n = needle;
-            while(*h == *n && *n != '\0') {
-                h++;
-                n++;
+            const char *hay = haystack;
+            const char *need = needle;
+            while(*hay == *need && *need != '\0') {
+                hay++;
+                need++;
             }
-            if(*n == '\0') {
+            if(*need == '\0') {
                 return haystack;
             }
         }

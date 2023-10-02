@@ -1,3 +1,5 @@
+/*String Module that uses arrays as much as possible*/
+
 #include <stdio.h>
 #include <string.h> 
 #include <assert.h>
@@ -45,7 +47,7 @@ int Str_compare(const char pcStr1[], const char pcStr2[])
             return 0; 
         u++;
     }
-    return (int) pcStr1[u] - pcStr2[u];
+    return (int) (pcStr1[u] - pcStr2[u]);
 }
 
 /*Search for a substring in a string. */

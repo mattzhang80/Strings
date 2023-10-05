@@ -70,7 +70,7 @@ char *Str_search(const char *pcHaystack, const char *pcNeedle) {
     assert(pcHaystack != NULL && pcNeedle != NULL);
     /* Return the haystack if the needle is empty */
     if(*pcNeedle == '\0') {
-        return (char) *pcHaystack;
+        return (char*) pcHaystack;
     }
     /* Loop through haystack string until it reaches its end */
     while(*pcHaystack != '\0') {

@@ -16,7 +16,6 @@
    and return a count of how many replacements were made.  Make no
    assumptions about the maximum number of replacements or the
    maximum number of characters in strings pcLine, pcFrom, or pcTo. */
-
 static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
@@ -33,22 +32,19 @@ static size_t replaceAndWrite(const char *pcLine,
       printf("%s", pcLine);
       return 0;
    }
-
-   while (pcFound != NULL) {
-      /*Print the line up to the found string*/
-      while (pcSearch != pcFound) {
-         printf("%c", *pcSearch);
-         pcSearch++;
-      }
+   /*Loop through the line until the from string is not found*/
+   while ((pcFound = Str_search(pcSearch, pcFrom)) != NULL) {
+      /*Print the line up to the from string*/
+      printf("%.*s", (int)(pcFound - pcSearch), pcSearch);
       /*Print the to string*/
       printf("%s", pcTo);
       /*Increment the search pointer to the end of the from string*/
-      pcSearch += Str_getLength(pcFrom);
+      pcSearch = pcFound + Str_getLength(pcFrom);
       /*Increment the replace count*/
       uReplaceCount++;
-      /*Find the next occurrence of the from string*/
-      pcFound = Str_search(pcSearch, pcFrom);
    }
+   printf("%s", pcSearch);
+   return uReplaceCount;
 }
 
 /*--------------------------------------------------------------------*/

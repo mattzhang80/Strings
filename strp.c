@@ -79,7 +79,8 @@ char *Str_search(const char *pcHaystack, const char *pcNeedle) {
         pcHaystackCopy = pcHaystack;
         pcNeedleCopy = pcNeedle;
         /* Loop through both strings while they are equal */
-        while((*pcHaystackCopy == *pcNeedleCopy) && *pcNeedleCopy != '\0') {
+        while((*pcHaystackCopy == *pcNeedleCopy) && 
+        *pcNeedleCopy != '\0') {
             pcHaystackCopy++;
             pcNeedleCopy++;
         }

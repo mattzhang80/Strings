@@ -12,7 +12,17 @@ in the "Policies" web page (also available on armlab in the file
 ~cos217/AuthorizedSourcesList ) to this section of the readme file,
 and edit it as appropriate.
 
+The course's lectures.
 
+The course's precepts.
+
+The course's website.
+
+Lecture slides and precept handouts.
+
+The course's current staff members outside of class time through Ed.
+
+Current Intro Lab TAs through visits to the Intro COS Lab.
 
 ------------------------------------------------------------------------
 What unauthorized sources of information did you use to complete the
@@ -25,19 +35,23 @@ may trigger a course penalty, and depending on the nature of the
 interaction, may additionally require the interaction being reported
 to the Committee on Discipline. Write "None" if you used no
 unauthorized sources of information.
-None
+None.
 
 
 ------------------------------------------------------------------------
 What is your assessment of the assignment? Was it helpful? Was it fun?
-
-
+Was much better than last time since I knew how to use armlab and my 
+home terminal better. After getting over that hump, this assignment Was
+much more helpful in understanding how the string module works at the
+computer level. It was decently fun, but it's still a coding assignment,
+so there's an upper limit there. Still, I'd say it was infinitely more
+enjoyable than last time.
 
 ------------------------------------------------------------------------
 (optional) What information can you provide about your submission that
 will help your grader to grade it in the most favorable light? In
 particular, what bugs are in your submission?
-
+No bugs, thank you for grading!
 
 
 ------------------------------------------------------------------------
@@ -45,7 +59,7 @@ What warnings does splint generate on stra.c, and what are your
 disagreements with them? Copy the splint warnings here, and express your
 disagreement after each warning. If there are no warnings, then write
 "None."
-
+None
 
 
 ------------------------------------------------------------------------
@@ -53,7 +67,7 @@ What warnings does critTer generate on stra.c, and what are your
 disagreements with them? Copy the critTer warnings here, and express
 your disagreement after each warning. If there are no warnings, then
 write "None."
-
+None
 
 
 ------------------------------------------------------------------------
@@ -61,7 +75,7 @@ What warnings does splint generate on strp.c, and what are your
 disagreements with them? Copy the splint warnings here, and express your
 disagreement after each warning. If there are no warnings, then write
 "None."
-
+None
 
 
 ------------------------------------------------------------------------
@@ -69,7 +83,7 @@ What warnings does critTer generate on strp.c, and what are your
 disagreements with them? Copy the critTer warnings here, and express
 your disagreement after each warning. If there are no warnings, then
 write "None."
-
+None
 
 
 ------------------------------------------------------------------------
@@ -77,7 +91,7 @@ What warnings does splint generate on replace.c, and what are your
 disagreements with them? Copy the splint warnings here, and express your
 disagreement after each warning. If there are no warnings, then write
 "None."
-
+None
 
 
 ------------------------------------------------------------------------
@@ -85,14 +99,23 @@ What warnings does critTer generate on replace.c, and what are your
 disagreements with them? Copy the critTer warnings here, and express
 your disagreement after each warning. If there are no warnings, then
 write "None."
-
+None
 
 
 ------------------------------------------------------------------------
 Is it possible for Str_copy or Str_concat to call assert to verify
 that the destination memory area specified by the caller is large
 enough? Explain.
-
-
+It is currently not possible for my implementation of the string 
+module for Str_copy or Str_concat to call assert to verify that the
+destination memory area specified by the caller is large enough. This 
+is because the implementation of the function input of the destination 
+buffer (pcDest) within these two functions does not allow the program to 
+check if the buffer is large enough to hold the result. When we pass in 
+pcDest as an array (which decays to a pointer) or a direct pointer, C 
+does not have any information about the memory's size that the pointer 
+points to, as it loses all information of this. To solve this 
+issue, we would need to add a function input to manually pass in the 
+destination size in order to assert.
 
 ------------------------------------------------------------------------

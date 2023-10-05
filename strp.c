@@ -27,7 +27,7 @@ char *Str_copy(char *pcDest, const char *pcSrc) {
     /* Loop through source string until it reaches its end */
     while((*pcDestStart++ = *pcSrc++) != '\0');
     /* Return the destination string */
-    return pcDestStart;
+    return pcDest;
 }
 
 /* Concatenate two strings together. Does this by looping through a 
@@ -74,21 +74,19 @@ char *Str_search(const char *pcHaystack, const char *pcNeedle) {
     }
     /* Loop through haystack string until it reaches its end */
     while(*pcHaystack != '\0') {
-        /* Loop through needle string until it reaches its end */
-        while (*pcHaystack != '\0') {
-            /* Set the pointers to the beginning of the strings */
-            pcHaystackCopy = pcHaystack;
-            pcNeedleCopy = pcNeedle;
-            /* Loop through both strings while they are equal */
-            while((*pcHaystack == *pcNeedle) && *pcNeedle != '\0') {
-                pcHaystack++;
-                pcNeedle++;
-            }
+        /* Set the pointers to the beginning of the strings */
+        pcHaystackCopy = pcHaystack;
+        pcNeedleCopy = pcNeedle;
+        /* Loop through both strings while they are equal */
+        while((*pcHaystackCopy == *pcNeedleCopy) && *pcNeedleCopy != '\0') {
+            pcHaystackCopy++;
+            pcNeedleCopy++;
         }
         /* Return the haystack if the needle is empty */
         if (*pcNeedleCopy == '\0') {
-            return (char *) pcHaystackCopy;
+            return (char *) pcHaystack;
         }
+        pcHaystack++;
     /* Return NULL if the needle is not found */
     return NULL;
     }

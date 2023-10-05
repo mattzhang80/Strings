@@ -1,73 +1,95 @@
 /*String Module that uses pointers as much as possible*/
 #include "str.h"
-#include <stddef.h>
-#include <assert.h>
 
-/* Get the length of a string. */
+/* Get the length of a string. Does this by looping through a string 
+until it reaches its end and uses a difference of pointers. Returns a 
+numeric value. Code taken from assignment specs.*/
 size_t Str_getLength(const char *pcSrc) {
+    /* Pointer to the end of the string */
     const char *pcEnd;
-    pcEnd = pcSrc;
     assert(pcSrc != NULL);
-    
+    pcEnd = pcSrc;
+    /* Loop through source string until it reaches its end */
     while(*pcEnd != '\0') {
         pcEnd++;
     }
+    /* Return the length of the string */
     return (size_t) (pcEnd - pcSrc);
 }
 
-/* Copy two strings. */
+/* Copy a string. Does this by looping through a string until it reaches 
+its end and sets another string and its correlated char array indices to 
+be equal. Returns a string. */
 char *Str_copy(char *pcDest, const char *pcSrc) {
-    char *dest = pcDest;
+    /* Pointer to the end of the string */
+    char *pcDestStart = pcDest;
     assert(pcSrc != NULL && pcDest != NULL);
-    while((*dest++ = *pcSrc++) != '\0');
-    return pcDest;
+    /* Loop through source string until it reaches its end */
+    while((*pcDestStart++ = *pcSrc++) != '\0');
+    /* Return the destination string */
+    return pcDestStart;
 }
 
-/* Concatenate two strings together. */
+/* Concatenate two strings together. Does this by looping through a 
+string until it reaches its end and sets another string and its 
+correlated char array indices to be equal. Returns a string. */
 char *Str_concat(char *pcDest, const char *pcSrc) {
-    char *dest = pcDest;
+    /* Pointer to the end of the string */
+    char *pcDestStart = pcDest;
     assert(pcSrc != NULL && pcDest != NULL);
-    while(*dest != '\0') {
-        dest++;
+    /* Loop through destination string until it reaches its end */
+    while(*pcDestStart != '\0') {
+        pcDestStart++;
     }
-    while((*dest++ = *pcSrc++) != '\0');
+    /* Loop through source string until it reaches its end */
+    while((*pcDestStart++ = *pcSrc++) != '\0');
     return pcDest;
 } 
 
-/* Compare two strings. */
+/* Compare two strings. Does this by looping through each string until 
+either one reaches the end of the string or until the characters are 
+not equal. Returns an integer. */
 int Str_compare(const char *pcStr1, const char *pcStr2) {
     assert(pcStr1 != NULL && pcStr2 != NULL);
-    while(*pcStr1 == *pcStr2) {
-        if(*pcStr1 == '\0') {
-            return 0;
-        }
+    /* Loop through both strings while they are equal */
+    while(*pcStr1 == *pcStr2 && *pcStr1 != '\0') {
         pcStr1++;
         pcStr2++;
     }
+    /* Return the difference between the two strings */
     return (int) (*pcStr1 - *pcStr2);
 }
 
-/* Search for a substring in a string. */
-const char *Str_search(const char *pcHaystack, const char *pcNeedle) {
-    const char *haystack = pcHaystack;
-    const char *needle = pcNeedle;
+/* Search for a substring in a string. Does this by looping through the 
+haystack string until it reaches its end and then looping through the 
+needle string until it reaches its end and then looping through both 
+strings while they are equal. Returns a string. */
+char *Str_search(const char *pcHaystack, const char *pcNeedle) {
+    /* Pointer to the end of the string */
+    const char *pcHaystackCopy, *pcNeedleCopy;
     assert(pcHaystack != NULL && pcNeedle != NULL);
-    if(*needle == '\0') {
-        return pcHaystack;
+    /* Return the haystack if the needle is empty */
+    if(*pcNeedle == '\0') {
+        return (char) *pcHaystack;
     }
-    while(*haystack != '\0') {
-        if(*haystack == *needle) {
-            const char *hay = haystack;
-            const char *need = needle;
-            while(*hay == *need && *need != '\0') {
-                hay++;
-                need++;
-            }
-            if(*need == '\0') {
-                return haystack;
+    /* Loop through haystack string until it reaches its end */
+    while(*pcHaystack != '\0') {
+        /* Loop through needle string until it reaches its end */
+        while (*pcHaystack != '\0') {
+            /* Set the pointers to the beginning of the strings */
+            pcHaystackCopy = pcHaystack;
+            pcNeedleCopy = pcNeedle;
+            /* Loop through both strings while they are equal */
+            while((*pcHaystack == *pcNeedle) && *pcNeedle != '\0') {
+                pcHaystack++;
+                pcNeedle++;
             }
         }
-        haystack++;
-    }
+        /* Return the haystack if the needle is empty */
+        if (*pcNeedleCopy == '\0') {
+            return (char *) pcHaystackCopy;
+        }
+    /* Return NULL if the needle is not found */
     return NULL;
+    }
 }

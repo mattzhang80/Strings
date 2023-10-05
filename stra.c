@@ -80,23 +80,23 @@ char *Str_search(const char pcHaystack[], const char pcNeedle[])
     /*Variables to track the length of the string*/
     size_t x, y;
     assert(pcHaystack != NULL && pcNeedle != NULL);
-    size_t pcNeedleLength;
-    size_t pcHaystackLength;
-    pcNeedleLength = Str_getLength(pcNeedle);
-    pcHaystackLength = Str_getLength(pcHaystack);
+    size_t needleLen;
+    size_t haystackLen;
+    needleLen = Str_getLength(pcNeedle);
+    haystackLen = Str_getLength(pcHaystack);
 
     /*If the needle is empty, return the haystack*/
-    if(pcNeedleLength == 0)
+    if(needleLen == 0)
         return (char*) pcHaystack;
 
     /*Loop through the haystack until it reaches its end*/
-    for (x = 0; x <= pcHaystackLength - pcNeedleLength; x++) {
+    for (x = 0; x <= haystackLen - needleLen; x++) {
         for (y = 0; pcNeedle[y] != '\0'; y++) {
             if (pcHaystack[x + y] != pcNeedle[y])
                 break;
         }
         /*Return the haystack if the needle is found*/
-        if (y == pcNeedleLength)
+        if (y == needleLen)
             return (char*)&pcHaystack[x];
     }
     /*Return NULL if the needle is not found*/

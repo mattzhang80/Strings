@@ -87,7 +87,7 @@ char *Str_search(const char *pcHaystack, const char *pcNeedle) {
             return (char *) pcHaystack;
         }
         pcHaystack++;
+    }
     /* Return NULL if the needle is not found */
     return NULL;
-    }
 }

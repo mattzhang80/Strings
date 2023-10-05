@@ -1,9 +1,9 @@
 /*String Module that uses pointers as much as possible*/
 #include "str.h"
 
-/* Get the length of a string. Does this by looping through a string 
-until it reaches its end and uses a difference of pointers. Returns a 
-numeric value. Code taken from assignment specs.*/
+/* Get the length of a string, pcSrc. Does this by looping through a 
+string until it reaches its end and uses a difference of pointers. 
+Returns a numeric value. Code taken from assignment specs.*/
 size_t Str_getLength(const char *pcSrc) {
     /* Pointer to the end of the string */
     const char *pcEnd;
@@ -17,9 +17,9 @@ size_t Str_getLength(const char *pcSrc) {
     return (size_t) (pcEnd - pcSrc);
 }
 
-/* Copy a string. Does this by looping through a string until it reaches 
-its end and sets another string and its correlated char array indices to 
-be equal. Returns a string. */
+/* Copy a string from pcSrc to pcDest. Does this by looping through a 
+string until it reaches its end and sets another string and its 
+correlated char array indices to be equal. Returns a string. */
 char *Str_copy(char *pcDest, const char *pcSrc) {
     /* Pointer to the end of the string */
     char *pcDestStart = pcDest;
@@ -30,9 +30,10 @@ char *Str_copy(char *pcDest, const char *pcSrc) {
     return pcDest;
 }
 
-/* Concatenate two strings together. Does this by looping through a 
-string until it reaches its end and sets another string and its 
-correlated char array indices to be equal. Returns a string. */
+/* Concatenate two strings, pcDest and pcSrc together. Does this by 
+looping through a string until it reaches its end and sets another 
+string and its correlated char array indices to be equal. Returns a 
+string. */
 char *Str_concat(char *pcDest, const char *pcSrc) {
     /* Pointer to the end of the string */
     char *pcDestStart = pcDest;
@@ -46,9 +47,9 @@ char *Str_concat(char *pcDest, const char *pcSrc) {
     return pcDest;
 } 
 
-/* Compare two strings. Does this by looping through each string until 
-either one reaches the end of the string or until the characters are 
-not equal. Returns an integer. */
+/* Compare two strings, pcStr1 and pcStr2. Does this by looping through 
+each string until either one reaches the end of the string or until the 
+characters are not equal. Returns an integer. */
 int Str_compare(const char *pcStr1, const char *pcStr2) {
     assert(pcStr1 != NULL && pcStr2 != NULL);
     /* Loop through both strings while they are equal */
@@ -60,10 +61,10 @@ int Str_compare(const char *pcStr1, const char *pcStr2) {
     return (int) (*pcStr1 - *pcStr2);
 }
 
-/* Search for a substring in a string. Does this by looping through the 
-haystack string until it reaches its end and then looping through the 
-needle string until it reaches its end and then looping through both 
-strings while they are equal. Returns a string. */
+/* Search for a substring pcNeedle in a string pcHaystack. Does this by 
+looping through the haystack string until it reaches its end and then 
+looping through the needle string until it reaches its end and then 
+looping through both strings while they are equal. Returns a string. */
 char *Str_search(const char *pcHaystack, const char *pcNeedle) {
     /* Pointer to the end of the string */
     const char *pcHaystackCopy, *pcNeedleCopy;

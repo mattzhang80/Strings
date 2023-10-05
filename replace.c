@@ -23,7 +23,7 @@ static size_t replaceAndWrite(const char *pcLine,
    assert(pcLine != NULL && pcFrom != NULL && pcTo != NULL);
    
    /*Variables to track the length of the string*/
-   size_t count = 0;
+   int uReplaceCount = 0;
    const char *pcSearch = pcLine;
    const char *pcFound = Str_search(pcSearch, pcFrom);
 
@@ -41,10 +41,10 @@ static size_t replaceAndWrite(const char *pcLine,
       /*Increment the search pointer to the end of the from string*/
       pcSearch = pcFound + Str_getLength(pcFrom);
       /*Increment the replace count*/
-      count++;
+      uReplaceCount++;
    }
    printf("%s", pcSearch);
-   return count;
+   return (size_t) uReplaceCount;
 }
 
 /*--------------------------------------------------------------------*/
